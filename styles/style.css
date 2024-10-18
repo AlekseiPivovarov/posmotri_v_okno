@@ -16,6 +16,8 @@ html {
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
   background-color: #1b1919;
+  display: flex;
+  align-items: center;
 }
 
 h1,
@@ -53,6 +55,7 @@ ol {
   margin-block: 133px;
   margin-inline: 30px;
   align-items: end;
+  flex-grow: 1;
 }
 
 .result {
@@ -213,6 +216,10 @@ ol {
   font-family: "Fira Sans Condensed", sans-serif;
   border-top: 1px solid #FFF;
   border-bottom: 1px solid #FFF;
+}
+
+.search-form__label:focus {
+  outline: none;
 }
 
 input:focus {
