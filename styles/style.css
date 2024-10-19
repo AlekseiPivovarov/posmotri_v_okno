@@ -54,31 +54,28 @@ ol {
   gap: 30px;
   margin-block: 133px;
   margin-inline: 30px;
-  align-items: end;
   flex-grow: 1;
 }
 
 .result {
   display: flex;
   flex-direction: column;
-  max-inline-size: 711px;
   inline-size: 100%;
-  max-block-size: 456px;
-  justify-content: stretch;
-  gap: 16px;
+  gap: 20px;
+  margin-block-start: 78px;
+  flex: 1.8;     /* Соотношение ширины секции result к content__details ~1.8 (711/399 из макета)  */
 }
 
 .result__video-container {
   position: relative;
-  max-inline-size: inherit;
-  inline-size: 100%;
   max-block-size: 386px;
   block-size: 100%;
   display: flex;
 }
 
 .result__video {
-  max-inline-size: inherit;
+  object-fit: cover;
+  object-position: center;
   max-block-size: inherit;
   flex: 1;
 }
@@ -86,15 +83,15 @@ ol {
 .search-form {
   display: flex;
   justify-content: space-between;
-  max-block-size: 54px;
   align-items: end;
 }
 
 .content__details {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
-  gap: 22px;
+  justify-content: space-between;
+  align-items: start;
+  flex: 1 0;
 }
 
 .content__accent {
@@ -109,25 +106,14 @@ ol {
   font-weight: 700;
   line-height: 94%; /* 70.5px */
   text-transform: uppercase;
+  margin-block-start: 5px;
 }
 
 .content__list {
-  max-inline-size: inherit;
   max-block-size: 298px;
   overflow-y: scroll;
   position: relative;
-}
-
-.content__list::-webkit-scrollbar {
-  width: 0;
-}
-
-.content__list::-moz-scrollbar {
-  width: 0;
-}
-
-.content__list::-ms-scrollbar {
-  width: 0;
+  inline-size: 100%;
 }
 
 .content__video-card {
@@ -145,11 +131,15 @@ ol {
   inline-size: 100%;
   block-size: 100%;
   flex-shrink: 0;
+  object-fit: cover;
+  object-position: center;
 }
 
 .content__video-card-description-container {
   flex-grow: 1;
   word-break: break-all;
+  max-inline-size: 180px;
+  margin-inline-start: 2px;
 }
 
 
@@ -175,6 +165,10 @@ ol {
   font-weight: 700;
   line-height: 100%; /* 30px */
   text-transform: uppercase;
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+  overflow: hidden;
+  max-inline-size: 180px;
 }
 
 .content__video-card-description {
@@ -194,9 +188,10 @@ ol {
 .search-form__label {
   display: inline-flex;
   width: fit-content;
-  margin-block-start: 6.5px;
+  margin-block-start: 5px;
   cursor: pointer;
   margin-inline-end: 15px;
+  align-items: center;
 }
 
 .search-form__label:has(.search-form__checkbox):hover {
@@ -212,10 +207,11 @@ ol {
   min-inline-size: 225px;
   line-height: 22px;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.70);
+  color: #FFF;
   font-family: "Fira Sans Condensed", sans-serif;
   border-top: 1px solid #FFF;
   border-bottom: 1px solid #FFF;
+  font-size: 18px;
 }
 
 .search-form__label:focus {
@@ -226,12 +222,9 @@ input:focus {
   outline: none;
 }
 
-.search-form__label:has(.search-form__checkbox:focus-visible) {
+.search-form__label:has(:focus-visible) {
   outline: 1px solid #FFF;
-}
-
-.search-form__label:has(.search-form__textfield:focus-visible) {
-  outline: 1px solid #FFF;
+  outline-offset: 2px;
 }
 
 .search-form__textfield::placeholder {
@@ -258,18 +251,14 @@ input:focus {
   position: relative;
 }
 
-.search-form__pseudo-checkbox::before {
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::after {
   content: "";
-  position: absolute;
-  inset: 2px;
+  block-size: 15px;
+  inline-size: 15px;
   background-color: #FFF;
-  display: none;
+  position: absolute;
+  margin: 1px;
 }
-
-input[type='checkbox']:checked ~ .search-form__pseudo-checkbox::before {
- display: block;
-}
-
 
 .button {
   background-color: transparent;
@@ -298,6 +287,7 @@ input[type='checkbox']:checked ~ .search-form__pseudo-checkbox::before {
 
 .more-button {
   inline-size: 100%;
+  margin-block-end: 1px;
 }
 
 .button:focus {
@@ -306,7 +296,7 @@ input[type='checkbox']:checked ~ .search-form__pseudo-checkbox::before {
 
 .button:focus-visible {
   outline: 1px solid #FFF;
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 .button:active {
@@ -323,15 +313,19 @@ input[type='checkbox']:checked ~ .search-form__pseudo-checkbox::before {
 }
 
 .content__card-link_current {
-  background-color: #545050;;
+  background-color: #545050;
 }
 
 .content__card-link:focus {
   outline: none;
 }
 
+.content__card-link:active {
+  background-color: #545050;
+}
+
 .content__card-link:focus-visible {
-  outline: 1px solid #FFF;;
+  outline: 1px solid #FFF;
 }
 
 .content__card-link:hover {
